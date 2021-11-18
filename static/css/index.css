@@ -1,4 +1,4 @@
-.color-picker-wrapper{
+.color-picker-wrapper {
     display: none;
     position: absolute;
     box-sizing: content-box;
@@ -16,20 +16,32 @@
 }
 
 .color-picker-panel {
+    position: relative;
     width: calc(100% - 20px);
     height: 150px;
     margin: 10px 10px 0;
-    border: 1px solid #ffffff;
-    box-sizing: border-box;
+    box-sizing: content-box;
+    overflow: hidden;
+}
+
+.color-picker-panel canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.color-picker-panel .move {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .5);
 }
 
 .color-picker-cs {
-    display: inline-block;
-    position: relative;
-    width: calc(100% - 20px);
-    height: 20px;
-    margin: 10px;
-    /*border: 1px solid #eeeeee;*/
     background: linear-gradient(to right,
     hsl(0, 100%, 50%),
     hsl(60, 100%, 50%),
@@ -39,12 +51,21 @@
     hsl(300, 100%, 50%),
     hsl(360, 100%, 50%)
     );
+}
+
+.color-picker-cs, .color-picker-os {
+    display: inline-block;
+    position: relative;
+    width: calc(100% - 20px);
+    height: 20px;
+    margin: 10px;
     border-radius: 4px;
     box-shadow: 1px 2px 5px rgba(0, 0, 0, .3);
     user-select: none;
 }
 
-.color-picker-cs .color-picker-cs-dot {
+.color-picker-cs .color-picker-cs-dot,
+.color-picker-os .color-picker-os-dot {
     position: absolute;
     left: 0;
     top: 0;
@@ -56,7 +77,8 @@
     transition: left ease;
 }
 
-.color-picker-cs .color-picker-cs-dot::before {
+.color-picker-cs .color-picker-cs-dot::before,
+.color-picker-os .color-picker-os-dot::before {
     content: "";
     position: absolute;
     left: 0px;
@@ -69,4 +91,21 @@
     box-shadow: 1px 2px 5px rgba(0, 0, 0, .5);
     z-index: 0;
     user-select: none;
+}
+
+.color-picker-os {
+    margin-top: 0;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.4) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.4) 75%, rgba(0, 0, 0, 0.4)),
+    linear-gradient(45deg, rgba(0, 0, 0, 0.4) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.4) 75%, rgba(0, 0, 0, 0.4));
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}
+
+.color-picker-os::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    border-radius: inherit;
 }

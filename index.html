@@ -12,17 +12,27 @@
 <h1 style="color: aqua">Color picker</h1>
 <h1 style="color: #fff776">Color picker</h1>
 <h1 style="color: #1681ff">Color picker</h1>
+
+<div class="color-picker-frame">
+    <canvas></canvas>
+    <i class="move-btn"></i>
+</div>
+<div class="opacity-bar"></div>
 <script src="static/js/colorPicker.js"></script>
 <script>
     const colorPicker = new ColorPicker({
         el: '#cpTrigger'
     })
+    colorPicker.$on("hueChange", handler)
+    colorPicker.$on("opacityChange", handler2)
 
     function handler(val) {
-        console.log('change', val, this)
+        console.log('hueChange', val, this)
     }
 
-    colorPicker.$on("change", handler)
+    function handler2(val) {
+        console.log('opacityChange', val, this)
+    }
 </script>
 </body>
 </html>
